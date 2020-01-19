@@ -1,0 +1,6 @@
+//This file should not be translated!
+label do
+label not
+label translate
+label this
+label file

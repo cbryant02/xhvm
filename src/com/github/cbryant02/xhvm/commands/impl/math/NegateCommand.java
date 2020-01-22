@@ -10,10 +10,10 @@ import static com.github.cbryant02.xhvm.assembly.StdRegister.A;
 import static com.github.cbryant02.xhvm.assembly.StdRegister.M;
 import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 
-@MatchRules(type = CommandType.MATH, arg1 = "neg")
+@MatchRules(type = CommandType.MATH, argRegex = "neg")
 public class NegateCommand extends Command {
     @Override
-    public void translate(int id, int arg, AssemblyBuilder builder) {
+    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
         builder.address(SP)
                 .set(A, MathOp.decrement(M))
                 .set(M, MathOp.negate(M));

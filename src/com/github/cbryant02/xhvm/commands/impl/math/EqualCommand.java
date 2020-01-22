@@ -10,11 +10,11 @@ import static com.github.cbryant02.xhvm.assembly.StdJump.JEQ;
 import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
 import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 
-@MatchRules(type = CommandType.MATH, arg1 = "eq")
+@MatchRules(type = CommandType.MATH, argRegex = "eq")
 public class EqualCommand extends Command {
     @Override
-    public void translate(int id, int arg, AssemblyBuilder builder) {
-        final String escape = "eq_n" + id;
+    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+        final String escape = "eq_i" + id;
         builder.address(SP)                     // Pop top of stack into D
                 .decrement(M)
                 .set(A, M)

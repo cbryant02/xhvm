@@ -7,14 +7,14 @@ import com.github.cbryant02.xhvm.commands.CommandType;
 import com.github.cbryant02.xhvm.commands.MatchRules;
 
 import static com.github.cbryant02.xhvm.assembly.StdJump.JGT;
-import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
 import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
+import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
 
-@MatchRules(type = CommandType.MATH, arg1 = "gt")
+@MatchRules(type = CommandType.MATH, argRegex = "gt")
 public class GreaterCommand extends Command {
     @Override
-    protected void translate(int id, int arg, AssemblyBuilder builder) {
-        final String escape = "gt_n" + id;
+    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+        final String escape = "gt_i" + id;
         builder.address(SP)
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))
                 .set(D, M)

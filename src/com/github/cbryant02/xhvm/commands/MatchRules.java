@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 public @interface MatchRules {
     CommandType type();
 
-    String arg1() default "";
+    String argRegex() default "";
 }

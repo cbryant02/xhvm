@@ -9,11 +9,17 @@ import com.github.cbryant02.xhvm.commands.impl.math.NegateCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.NotCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.OrCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.SubtractCommand;
+import com.github.cbryant02.xhvm.commands.impl.pop.PopCommand;
+import com.github.cbryant02.xhvm.commands.impl.pop.PopTempCommand;
+import com.github.cbryant02.xhvm.commands.impl.push.PushCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushConstantCommand;
+import com.github.cbryant02.xhvm.commands.impl.push.PushTempCommand;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandRegistry {
     private static final List<Class<? extends Command>> commandMap = List.of(
@@ -26,7 +32,11 @@ public class CommandRegistry {
             NotCommand.class,
             OrCommand.class,
             SubtractCommand.class,
-            PushConstantCommand.class
+            PushConstantCommand.class,
+            PushTempCommand.class,
+            PushCommand.class,
+            PopCommand.class,
+            PopTempCommand.class
     );
 
     private static final List<Class<? extends Command>> warned = new ArrayList<>();
@@ -42,7 +52,10 @@ public class CommandRegistry {
                         }
                         return false;
                     }
-                    return info.type.equals(rules.type()) && info.arg1.equals(rules.arg1());
+
+                    Pattern argPattern = Pattern.compile(rules.argRegex());
+                    Matcher argMatcher = argPattern.matcher(info.arg1);
+                    return info.type.equals(rules.type()) && argMatcher.matches();
                 })
                 .findFirst()
                 .orElse(null);

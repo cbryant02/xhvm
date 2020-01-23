@@ -12,7 +12,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 @MatchRules(type = CommandType.MATH, argRegex = "or")
 public class OrCommand extends Command {
     @Override
-    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         builder.address(SP)
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))   // Pop top of stack into D
                 .set(D, M)

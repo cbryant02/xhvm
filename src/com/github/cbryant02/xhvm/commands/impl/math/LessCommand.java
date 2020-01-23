@@ -13,7 +13,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 @MatchRules(type = CommandType.MATH, argRegex = "lt")
 public class LessCommand extends Command {
     @Override
-    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         final String escape = "lt_i" + id;
         builder.address(SP)
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))

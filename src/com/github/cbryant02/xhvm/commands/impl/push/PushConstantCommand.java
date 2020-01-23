@@ -11,7 +11,7 @@ import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
 @MatchRules(type = CommandType.PUSH, argRegex = "constant")
 public class PushConstantCommand extends Command {
     @Override
-    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         builder.address(arg2)      // Save constant to D register
                 .set(D, A)
                 .address(SP)      // Jump to top of stack

@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.util.Objects;
 
 public class Translator {
+    private File outputFile;
     private Writer out;
 
     public Translator(File outputFile) throws IOException {
@@ -18,12 +19,13 @@ public class Translator {
     }
 
     public void updateOutputFile(File outputFile) throws IOException {
-        out = new FileWriter(outputFile);
+        this.outputFile = outputFile;
+        this.out = new FileWriter(outputFile);
     }
 
     public void write(CommandInfo info) throws IOException {
         Command impl = Objects.requireNonNull(CommandRegistry.getImpl(info));
-        out.write(impl.translate(info.arg1, info.arg2));
+        out.write(impl.translate(outputFile.getName(), info.arg1, info.arg2));
     }
 
     public void close() throws IOException {

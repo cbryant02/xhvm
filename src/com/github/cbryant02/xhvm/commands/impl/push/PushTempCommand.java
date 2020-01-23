@@ -7,13 +7,13 @@ import com.github.cbryant02.xhvm.commands.CommandType;
 import com.github.cbryant02.xhvm.commands.MatchRules;
 
 import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
-import static com.github.cbryant02.xhvm.assembly.StdRegister.M;
 import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 
 @MatchRules(type = CommandType.PUSH, argRegex = "temp")
 public class PushTempCommand extends Command {
     @Override
-    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
+        if (arg2 > 8) throw new IllegalArgumentException("Argument for \"push temp #\" must be within range of 0-8");
         builder.address(arg2)
                 .set(D, A)
                 .address(5)

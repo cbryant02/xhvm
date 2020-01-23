@@ -10,9 +10,13 @@ import com.github.cbryant02.xhvm.commands.impl.math.NotCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.OrCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.SubtractCommand;
 import com.github.cbryant02.xhvm.commands.impl.pop.PopCommand;
+import com.github.cbryant02.xhvm.commands.impl.pop.PopPointerCommand;
+import com.github.cbryant02.xhvm.commands.impl.pop.PopStaticCommand;
 import com.github.cbryant02.xhvm.commands.impl.pop.PopTempCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushConstantCommand;
+import com.github.cbryant02.xhvm.commands.impl.push.PushPointerCommand;
+import com.github.cbryant02.xhvm.commands.impl.push.PushStaticCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushTempCommand;
 
 import java.lang.reflect.Constructor;
@@ -33,9 +37,13 @@ public class CommandRegistry {
             OrCommand.class,
             SubtractCommand.class,
             PushConstantCommand.class,
+            PushPointerCommand.class,
+            PushStaticCommand.class,
             PushTempCommand.class,
             PushCommand.class,
             PopCommand.class,
+            PopPointerCommand.class,
+            PopStaticCommand.class,
             PopTempCommand.class
     );
 

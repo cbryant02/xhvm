@@ -13,7 +13,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 @MatchRules(type = CommandType.MATH, argRegex = "eq")
 public class EqualCommand extends Command {
     @Override
-    public void translate(int id, String arg1, int arg2, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         final String escape = "eq_i" + id;
         builder.address(SP)                     // Pop top of stack into D
                 .decrement(M)

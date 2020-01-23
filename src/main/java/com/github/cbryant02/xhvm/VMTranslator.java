@@ -14,25 +14,27 @@ import java.util.stream.Collectors;
 
 public class VMTranslator {
     public static void main(String[] args) throws IOException, InterruptedException {
+        System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
         File dir;
         if (args.length > 0) {
             dir = new File(args[0]);
             if (!dir.exists() | !dir.isDirectory()) {
-                System.out.println(dir.getName() + " is not a valid directory. Exiting.");
+                System.out.println(dir.getPath() + " is not a valid directory. Exiting.");
                 return;
             }
         } else dir = promptDirectory();
 
         // Prompt for directory and scan for .vm files
         List<File> targets = locateVmFiles(dir);
-        System.out.println(targets.stream()
-                .map(File::getName)
-                .collect(Collectors.joining(", ", "Found files: [", "]")));
-
         if (targets == null || targets.isEmpty()) {
             System.out.println("No files to process. Exiting.");
             return;
         }
+
+        System.out.println(targets.stream()
+                .map(File::getName)
+                .collect(Collectors.joining(", ", "Found files: [", "]")));
 
         // Read and strip assembly from the .vm files
         byte[] strippedAsm = read(targets);

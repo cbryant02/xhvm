@@ -1,5 +1,6 @@
 package com.github.cbryant02.xhvm.commands;
 
+import com.github.cbryant02.xhvm.VMTranslator;
 import com.github.cbryant02.xhvm.commands.impl.math.AddCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.AndCommand;
 import com.github.cbryant02.xhvm.commands.impl.math.EqualCommand;
@@ -18,6 +19,7 @@ import com.github.cbryant02.xhvm.commands.impl.push.PushConstantCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushPointerCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushStaticCommand;
 import com.github.cbryant02.xhvm.commands.impl.push.PushTempCommand;
+import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

@@ -16,8 +16,7 @@ public class EqualCommand extends Command {
     public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         final String escape = "eq_i" + id;
         builder.address(SP)                     // Pop top of stack into D
-                .decrement(M)
-                .set(A, M)
+                .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))
                 .set(D, M)
                 .decrement(A)                   // Subtract D from next stack value and store result in D
                 .set(D, MathOp.subtract(M, D))

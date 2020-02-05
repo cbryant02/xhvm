@@ -25,10 +25,10 @@ public class CommandInfo {
 
         if (type == CommandType.RETURN) arg1 = null;
         else if (type == CommandType.MATH) arg1 = type.getSource();
-        else arg1 = components[1];
+        else arg1 = components[1].trim();
 
         if (takesTwoArguments.contains(type)) {
-            arg2 = Integer.parseInt(components[2]);
+            arg2 = Integer.parseInt(components[2].trim());
             hasTwoArguments = true;
         } else {
             arg2 = Integer.MIN_VALUE;

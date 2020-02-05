@@ -6,7 +6,6 @@ import org.reflections.Reflections;
 import java.lang.reflect.Constructor;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -33,8 +32,8 @@ public class CommandRegistry {
                 .filter(candidate -> {
                     MatchRules rules = candidate.getDeclaredAnnotation(MatchRules.class);
                     Pattern argPattern = Pattern.compile(rules.argRegex());
-                    Matcher argMatcher = argPattern.matcher(info.arg1);
-                    return info.type.equals(rules.type()) && argMatcher.matches();
+                    boolean argMatches = (info.arg1 == null) || argPattern.matcher(info.arg1).matches();
+                    return info.type.equals(rules.type()) && argMatches;
                 })
                 .findFirst()
                 .orElse(null);

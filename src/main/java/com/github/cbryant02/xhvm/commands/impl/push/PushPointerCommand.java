@@ -12,7 +12,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.*;
 @MatchRules(type = CommandType.PUSH, argRegex = "pointer")
 public class PushPointerCommand extends Command {
     @Override
-    protected void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
+    public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
         if (arg2 != 0 && arg2 != 1)
             throw new IllegalArgumentException("Argument for \"push pointer #\" must be either 0 or 1");
         StdSymbol segment = (arg2 == 0) ? THIS : THAT;

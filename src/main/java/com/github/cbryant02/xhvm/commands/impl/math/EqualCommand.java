@@ -14,7 +14,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 public class EqualCommand extends Command {
     @Override
     public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
-        final String escape = "eq_i" + id;
+        final String escape = "eq." + id;
         builder.address(SP)                     // Pop top of stack into D
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))
                 .set(D, M)
@@ -26,6 +26,6 @@ public class EqualCommand extends Command {
                 .address(SP)                    // Set top of stack to FALSE if D!=0
                 .set(A, MathOp.decrement(M))
                 .set(M, MathOp.FALSE)
-                .label(escape);                 // escape label: (eq_esc_#)
+                .label(escape);                 // escape label: (eq.#)
     }
 }

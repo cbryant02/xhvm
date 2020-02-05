@@ -14,7 +14,7 @@ import static com.github.cbryant02.xhvm.assembly.StdSymbol.SP;
 public class LessCommand extends Command {
     @Override
     public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
-        final String escape = "lt_i" + id;
+        final String escape = "lt." + id;
         builder.address(SP)
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))
                 .set(D, M)

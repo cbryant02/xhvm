@@ -14,7 +14,7 @@ import static com.github.cbryant02.xhvm.assembly.StdRegister.*;
 public class GreaterCommand extends Command {
     @Override
     public void translate(String filename, String arg1, int arg2, int id, AssemblyBuilder builder) {
-        final String escape = "gt_i" + id;
+        final String escape = "gt." + id;
         builder.address(SP)
                 .set(MathOp.compoundRegister(A, M), MathOp.decrement(M))
                 .set(D, M)

@@ -25,7 +25,8 @@ public class Translator {
 
     public void write(CommandInfo info) throws IOException {
         Command impl = Objects.requireNonNull(CommandRegistry.getImpl(info));
-        out.write(impl.translate(outputFile.getName(), info.arg1, info.arg2));
+        String name = outputFile.getName().substring(0, outputFile.getName().lastIndexOf("."));
+        out.write(impl.translate(name, info.arg1, info.arg2));
     }
 
     public void close() throws IOException {

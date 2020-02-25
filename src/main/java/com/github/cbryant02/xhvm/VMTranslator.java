@@ -97,7 +97,7 @@ public class VMTranslator {
                     String line;
                     while ((line = in.readLine()) != null) {
                         if (line.startsWith("//") || line.isBlank()) continue;
-                        line = line.replaceAll("\\p{javaSpaceChar}+//.+", "");
+                        line = line.replaceAll("\\p{javaWhitespace}+//.+", "");
                         out.write(line + System.lineSeparator());
                     }
                 }
